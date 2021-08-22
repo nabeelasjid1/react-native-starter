@@ -1,5 +1,5 @@
 import { createStackNavigator } from "react-navigation-stack";
-import ContactUs from "../Containers/ContactUs";
+import ContactUs from "../Containers/CustomerCare/ContactUs";
 
 export const ContactNavigator = createStackNavigator(
   {

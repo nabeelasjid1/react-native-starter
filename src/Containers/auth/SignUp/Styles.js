@@ -3,7 +3,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import Colors from "../../Styles/Colors";
+import Colors from "../../../Styles/Colors";
 const styles = StyleSheet.create({
   headerImageContainer: {
     justifyContent: "center",

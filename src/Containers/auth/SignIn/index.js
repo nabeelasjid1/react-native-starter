@@ -6,7 +6,7 @@ import {
   GraphRequestManager,
   LoginManager
 } from 'react-native-fbsdk';
-import { loginUser } from '../../redux/auth/actions'
+import { loginUser } from '../../../redux/auth/actions'
 import {
   View,
   Text,
@@ -26,10 +26,10 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import styles from "./Styles";
 import {ActivityIndicator } from "react-native-paper";
-import Styles from "../../Styles/Styles";
-import Button from "../../Components/Button";
-import TextInputComponent from "../../Components/TextInput";
-import * as Constants from "../../Constants";
+import Styles from "../../../Styles/Styles";
+import Button from "../../../Components/Button";
+import TextInputComponent from "../../../Components/TextInput";
+import * as Constants from "../../../Constants";
 import Icon from "react-native-vector-icons/Entypo";
 import appleAuth, {
   AppleAuthError,

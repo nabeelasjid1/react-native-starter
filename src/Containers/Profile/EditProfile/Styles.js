@@ -1,7 +1,7 @@
 import { StyleSheet, Dimensions } from "react-native";
-import {BlueColor} from '../../../config/color'
+import {BlueColor} from '../../../../config/color'
 
-import Colors from "../../Styles/Colors";
+import Colors from "../../../Styles/Colors";
 import { color } from "react-native-reanimated";
 
 
@@ -9,12 +9,7 @@ export const styles = StyleSheet.create({
 
     screen : {
         flex : 1 , 
-        paddingTop : 30,
-        bottom: 30
-    },
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        paddingTop : 10,
     },
     line : {
         marginTop  : -5 ,
@@ -31,7 +26,7 @@ export const styles = StyleSheet.create({
         fontSize : 24 , 
         fontWeight : 'bold',
         marginTop : 20,
-        marginBottom : 10 ,
+        marginBottom : 40 ,
 
     },
     topTitleText :{
@@ -41,7 +36,7 @@ export const styles = StyleSheet.create({
         fontSize : 30 , 
 
         marginTop : 15,
-        marginBottom : 20 ,
+        marginBottom : 40 ,
         zIndex : -10
 
     },
@@ -65,19 +60,6 @@ export const styles = StyleSheet.create({
     
         alignItems : 'center',
         marginBottom : 30
-    },
-    viewContent : {
-        padding: 30,
-    },
-    contentTitle : {
-        marginVertical : 10 ,
-        fontSize : 20 , 
-        fontWeight : 'bold',
-    } ,
-    contentSub :{
-        lineHeight : 30,
-        marginVertical : 10 , 
-        fontSize : 18
     },
     mainName:{
         fontSize : 28 , 

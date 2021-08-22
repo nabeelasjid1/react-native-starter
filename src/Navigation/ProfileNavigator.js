@@ -1,9 +1,9 @@
 import { createStackNavigator } from "react-navigation-stack";
-import ProfileScreen from "../Containers/Profile";
+import EditProfileScreen from "../Containers/Profile/EditProfile";
 
 export const ProfileNavigator = createStackNavigator(
   {
-    Profile: { screen: ProfileScreen },
+    Profile: { screen: EditProfileScreen },
   },
   {
     defaultNavigationOptions: {

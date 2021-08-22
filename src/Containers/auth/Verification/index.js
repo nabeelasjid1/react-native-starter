@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { verifyEmail } from "../../redux/auth/actions";
+import { verifyEmail } from "../../../redux/auth/actions";
 import {
   View,
   Text,
@@ -12,12 +12,12 @@ import {
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { FontAwesome, Entypo } from "@expo/vector-icons";
 import styles from "./Styles";
-import Styles from "../../Styles/Styles";
-import Button from "../../Components/Button";
-import * as Constants from "../../Constants";
+import Styles from "../../../Styles/Styles";
+import Button from "../../../Components/Button";
+import * as Constants from "../../../Constants";
 import Toast from "react-native-simple-toast";
-import Loading from "../../Components/Loader";
-import images from "../../Styles/Images";
+import Loading from "../../../Components/Loader";
+import images from "../../../Styles/Images";
 import { ScrollView } from "react-native-gesture-handler";
 class Verification extends Component {
   constructor(props) {

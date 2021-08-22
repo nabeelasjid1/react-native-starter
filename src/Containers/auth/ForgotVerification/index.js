@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { verifyForgotPass, resetPassword } from "../../redux/auth/actions";
+import { verifyForgotPass, resetPassword } from "../../../redux/auth/actions";
 import {
   View,
   Text,
@@ -12,14 +12,14 @@ import {
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { FontAwesome, Entypo } from "@expo/vector-icons";
 import { ActivityIndicator } from "react-native-paper";
-import TextInputComponent from "../../Components/TextInput";
+import TextInputComponent from "../../../Components/TextInput";
 
 import styles from "./Styles";
-import Styles from "../../Styles/Styles";
-import Button from "../../Components/Button";
+import Styles from "../../../Styles/Styles";
+import Button from "../../../Components/Button";
 import Toast from "react-native-simple-toast";
-import Loading from "../../Components/Loader";
-import images from "../../Styles/Images";
+import Loading from "../../../Components/Loader";
+import images from "../../../Styles/Images";
 import { ScrollView } from "react-native-gesture-handler";
 class ForgotVerification extends Component {
   constructor(props) {

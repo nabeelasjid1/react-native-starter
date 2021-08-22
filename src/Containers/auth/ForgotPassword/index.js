@@ -3,11 +3,11 @@ import { View, Text, SafeAreaView, TextInput, TouchableOpacity, KeyboardAvoiding
 import { ActivityIndicator } from "react-native-paper";
 
 import styles from "./Styles";
-import Styles from "../../Styles/Styles";
-import Button from "../../Components/Button";
+import Styles from "../../../Styles/Styles";
+import Button from "../../../Components/Button";
 import { FontAwesome } from '@expo/vector-icons';
 
-import { forgotPassword } from '../../redux/auth/actions'
+import { forgotPassword } from '../../../redux/auth/actions'
 import { connect } from "react-redux";
 import { ScrollView } from "react-native-gesture-handler";
 class ForgotPassword extends Component {

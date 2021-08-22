@@ -22,7 +22,7 @@ const customeDrawerComponent = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUser(userData?.user?._id));
-  },[]);
+  }, []);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <TouchableOpacity

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { registerUser } from "../../redux/auth/actions";
+import { registerUser } from "../../../redux/auth/actions";
 import {
   View,
   Text,
@@ -14,14 +14,14 @@ import {
 } from "react-native";
 import CheckBox from "@react-native-community/checkbox";
 import styles from "./Styles";
-import Images from "../../Styles/Images";
-import Styles from "../../Styles/Styles";
-import Button from "../../Components/Button";
-import TextInputComponent from "../../Components/TextInput";
+import Images from "../../../Styles/Images";
+import Styles from "../../../Styles/Styles";
+import Button from "../../../Components/Button";
+import TextInputComponent from "../../../Components/TextInput";
 import { ActivityIndicator } from "react-native-paper";
-import * as Constants from "../../Constants";
+import * as Constants from "../../../Constants";
 import { FontAwesome } from "@expo/vector-icons";
-import { BlueColor } from "../../../config";
+import { BlueColor } from "../../../../config";
 
 const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passReg = /^[a-zA-Z0-9*.!@#$%^&+-_=/( /)]{3,30}$/;

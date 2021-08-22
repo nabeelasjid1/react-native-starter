@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import colors from "../Styles/Colors";
 import Images from "../Styles/Images";
 import { MainHomeNavigator } from "./MainHomeNavigator";
-import { FontAwesome } from "@expo/vector-icons";
 const styles = StyleSheet.create({
   tabBarItemContainer: {
     flex: 1,

@@ -9,16 +9,16 @@ import {
   Platform,
 } from "react-native";
 import { styles } from "./Styles";
-import Button from "../../Components/Button";
+import Button from "../../../Components/Button";
 import { Provider, TextInput } from "react-native-paper";
-import Styles from "../../Styles/Styles";
-import { updateProfile, getUser } from "../../redux/users/actions";
-import images from "../../Styles/Images";
+import Styles from "../../../Styles/Styles";
+import { updateProfile, getUser } from "../../../redux/users/actions";
+import images from "../../../Styles/Images";
 import { connect } from "react-redux";
 import Toast from "react-native-simple-toast";
 import { FontAwesome } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { BlueColor } from "../../../config/color";
+import { BlueColor } from "../../../../config/color";
 
 class Profile extends Component {
   constructor(props) {

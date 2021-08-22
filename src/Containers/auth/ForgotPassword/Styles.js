@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import Colors from "../../Styles/Colors";
+import Colors from "../../../Styles/Colors";
 const widthScreen = Dimensions.get("screen").width;
 const heightScreen = Dimensions.get("window").height;
 
@@ -11,25 +11,28 @@ const styles = StyleSheet.create({
     marginRight: "auto",
     flex: 1,
   },
-  textInput: {
-    width: "100%",
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginVertical : 20 
-  },
-  errorMessageStyle: {
-    color: "red",
-    paddingLeft : 35 
-  
-  },
   maincontainer: {
+    marginTop: "45%",
     justifyContent: "center",
     alignItems: "center",
+    flex: 0.5,
+  },
+  SectionStyleEdit: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+    borderBottomWidth: 2,
+    borderColor: Colors.cancel,
+    height: 45,
+    width: "70%",
+    borderColor: "#44a9c1",
+    marginBottom: "6%",
   },
   verificationText: {
     color: "#8B8B8B",
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: "500",
+    marginTop : 10 
   },
   OTPInputView: {
     height: heightScreen / 8,
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
     borderRadius: 50,
     backgroundColor: "#44a9c1",
-    height: 50,
+    height: 45,
   },
   buttonWrapper: {
     width: "90%",
@@ -71,17 +74,12 @@ const styles = StyleSheet.create({
     top: 0,
     height: "100%",
   },
-  verificationImage: {
-    width: "100%",
-    height: 140,
-    marginTop: "30%",
-    marginBottom: "10%",
-  },
   headerText: { fontSize: 30, marginBottom: "0.5%" },
-  otpCard: {
+  card: {
     backgroundColor: "white",
     padding: "5%",
     justifyContent: "center",
+    alignItems: "center",
     shadowColor: "#000",
     borderRadius: 8,
     shadowColor: "#000",
@@ -91,14 +89,10 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
-    marginTop: "10%",
+
     elevation: 3,
   },
-  resendView: {
-    marginTop: "5%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  resendText: { color: "#44a9c1", fontWeight: "600", fontSize: 15 },
+ 
+ 
 });
 export default styles;
