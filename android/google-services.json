@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "48815400866",
+    "firebase_url": "https://eushare-88f0d.firebaseio.com",
+    "project_id": "eushare-88f0d",
+    "storage_bucket": "eushare-88f0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48815400866:android:8da0c0cda7fb34645374fb",
+        "android_client_info": {
+          "package_name": "com.EUSHARE.EUSHARE"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48815400866-kme137bt21l52sa5mq1qrra5bep8m859.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz0Kx8kD0wnON-WUEgkjJXwq0Bog_HFDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48815400866-kme137bt21l52sa5mq1qrra5bep8m859.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
