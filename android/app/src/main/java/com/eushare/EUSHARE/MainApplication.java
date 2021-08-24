@@ -1,4 +1,4 @@
-package com.EUSHARE.EUSHARE;
+package com.STARTER.STARTER;
 
 import android.app.Application;
 import android.content.Context;
@@ -13,7 +13,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.EUSHARE.EUSHARE.generated.BasePackageList;
+import com.STARTER.STARTER.generated.BasePackageList;
 import org.unimodules.adapters.react.ReactAdapterPackage;
 import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import org.unimodules.adapters.react.ReactModuleRegistryProvider;

@@ -134,7 +134,7 @@ android {
     }
 
     defaultConfig {
-        applicationId 'com.EUSHARE.EUSHARE'
+        applicationId 'com.STARTER.STARTER'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 16

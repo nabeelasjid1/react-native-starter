@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { verifyEmail } from "../../../redux/auth/actions";
 import {
   View,
@@ -19,110 +18,104 @@ import Toast from "react-native-simple-toast";
 import Loading from "../../../Components/Loader";
 import images from "../../../Styles/Images";
 import { ScrollView } from "react-native-gesture-handler";
-class Verification extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      code: "",
-      loading: false,
-    };
-  }
-  verifyHandler = () => {
-    if (this.state.code.length === 6) {
-      this.props.verifyEmail(this.state.code);
-    } else {
-      Toast.show("Enter 6 Digit Code", Toast.LONG);
-    }
+const Verification = (props) => {
+  const state = {
+    code: "",
+    loading: false,
   };
-
-  render() {
-    return (
-      <>
-        <SafeAreaView style={Styles.headerStyle} />
-        <KeyboardAvoidingView
-          behavior={Platform.OS == "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS == "ios" ? 30 : 30}
-        >
-          <ScrollView style={Styles.headerStyle}>
-            <View style={styles.container}>
+  const verifyHandler = () => {
+    // if (state.code.length === 6) {
+    //   props.verifyEmail(state.code);
+    // } else {
+    //   Toast.show("Enter 6 Digit Code", Toast.LONG);
+    // }
+  };
+  return (
+    <>
+      <SafeAreaView style={Styles.headerStyle} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS == "ios" ? 30 : 30}
+      >
+        <ScrollView style={Styles.headerStyle}>
+          <View style={styles.container}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={{ position: "relative", top: 70, left: -20 }}
+              onPress={() => props.navigation.navigate("login")}
+            >
+              <FontAwesome name="chevron-left" size={24} color="black" />
+            </TouchableOpacity>
+            <Image
+              source={images.verification}
+              resizeMode="contain"
+              style={styles.verificationImage}
+            />
+            <View style={styles.maincontainer}>
+              <Text style={styles.headerText}>Verification</Text>
+              <Text style={styles.verificationText}>
+                Enter the 6 digit code that
+              </Text>
+              <Text style={styles.verificationText}>
+                was sent to your email
+              </Text>
+            </View>
+            <View style={styles.otpCard}>
               <TouchableOpacity
                 activeOpacity={0.7}
-                style={{ position: "relative", top: 70, left: -20 }}
-                onPress={() => this.props.navigation.navigate("login")}
+                style={{ width: "100%", alignItems: "flex-end" }}
+                onPress={() => {
+                  setState({ code: "" });
+                }}
               >
-                <FontAwesome name="chevron-left" size={24} color="black" />
+                <Entypo name="circle-with-cross" size={24} color="#636363" />
               </TouchableOpacity>
-              <Image
-                source={images.verification}
-                resizeMode="contain"
-                style={styles.verificationImage}
+              <OTPInputView
+                style={styles.OTPInputView}
+                pinCount={6}
+                autoFocusOnLoad
+                codeInputFieldStyle={styles.underlineStyleBase}
+                codeInputHighlightStyle={styles.underlineStyleHighLighted}
+                onCodeChanged={(code) => {
+                  setState({ code });
+                }}
+                code={state.code}
               />
-              <View style={styles.maincontainer}>
-                <Text style={styles.headerText}>Verification</Text>
-                <Text style={styles.verificationText}>
-                  Enter the 6 digit code that
-                </Text>
-                <Text style={styles.verificationText}>
-                  was sent to your email
-                </Text>
-              </View>
-              <View style={styles.otpCard}>
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  style={{ width: "100%", alignItems: "flex-end" }}
-                  onPress={() => {
-                    this.setState({ code: "" });
-                  }}
-                >
-                  <Entypo name="circle-with-cross" size={24} color="#636363" />
-                </TouchableOpacity>
-                <OTPInputView
-                  style={styles.OTPInputView}
-                  pinCount={6}
-                  autoFocusOnLoad
-                  codeInputFieldStyle={styles.underlineStyleBase}
-                  codeInputHighlightStyle={styles.underlineStyleHighLighted}
-                  onCodeChanged={(code) => {
-                    this.setState({ code });
-                  }}
-                  code={this.state.code}
-                />
-                <View style={styles.buttonWrapper}>
-                  {this.state.loading ? (
-                    <Loading />
-                  ) : (
-                    <Button
-                      full
-                      style={styles.buttonSignIn}
-                      onPress={this.verifyHandler}
-                    >
-                      {Constants.VERIFY}
-                    </Button>
-                  )}
-                </View>
-              </View>
-              <View style={styles.resendView}>
+              <View style={styles.buttonWrapper}>
+                {state.loading ? (
+                  <Loading />
+                ) : (
+                  <Button
+                    full
+                    style={styles.buttonSignIn}
+                    onPress={verifyHandler}
+                  >
+                    {Constants.VERIFY}
+                  </Button>
+                )}
               </View>
             </View>
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </>
-    );
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    verifyEmail: (token) => {
-      dispatch(verifyEmail(token));
-    },
-  };
+            <View style={styles.resendView}></View>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </>
+  );
 };
 
-const mapStateToProps = ({ auth }) => {
-  return {
-    state: auth,
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     verifyEmail: (token) => {
+//       dispatch(verifyEmail(token));
+//     },
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Verification);
+// const mapStateToProps = ({ auth }) => {
+//   return {
+//     state: auth,
+//   };
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Verification);
+export default Verification;

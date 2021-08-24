@@ -14,12 +14,12 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.EUSHARE.EUSHARE",
+      "bundleIdentifier": "com.STARTER.STARTER",
       "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
-      "package": "com.EUSHARE.EUSHARE",
+      "package": "com.STARTER.STARTER",
       "versionCode": 11,
       "googleServicesFile": "./google-services.json"
     },

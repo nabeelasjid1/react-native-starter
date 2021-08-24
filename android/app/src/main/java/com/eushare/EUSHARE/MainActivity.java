@@ -1,4 +1,4 @@
-package com.EUSHARE.EUSHARE;
+package com.STARTER.STARTER;
 import com.pusher.pushnotifications.PushNotifications;
 import android.os.Bundle;
 

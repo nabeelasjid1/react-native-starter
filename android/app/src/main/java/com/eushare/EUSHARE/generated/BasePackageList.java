@@ -1,4 +1,4 @@
-package com.EUSHARE.EUSHARE.generated;
+package com.STARTER.STARTER.generated;
 
 import java.util.Arrays;
 import java.util.List;

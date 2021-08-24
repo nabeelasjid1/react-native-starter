@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -15,14 +15,12 @@ import { Provider, TextInput } from "react-native-paper";
 import Styles from "../../../Styles/Styles";
 import { updateProfile } from "../../../redux/users/actions";
 import images from "../../../Styles/Images";
-import { connect } from "react-redux";
 import Toast from "react-native-simple-toast";
 import { FontAwesome } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { BlueColor } from "../../../../config/color";
 
-class Profile extends Component {
-  render() {
+const Profile = (props) => {
     return (
       <>
         <SafeAreaView style={Styles.headerStyle} />
@@ -34,7 +32,7 @@ class Profile extends Component {
                   <TouchableOpacity
                     activeOpacity={0.7}
                     style={{ marginLeft: 20, marginTop: 24, zIndex: 3 }}
-                    onPress={() => this.props.navigation.navigate("Home")}
+                    onPress={() => props.navigation.navigate("Home")}
                   >
                     <FontAwesome name="chevron-left" size={24} color="black" />
                   </TouchableOpacity>
@@ -106,23 +104,23 @@ class Profile extends Component {
         </SafeAreaView>
       </>
     );
-  }
 }
 
-const mapStateToProps = ({ auth, global, user }) => {
-  return {
-    auth: auth,
-    global,
-    user: user,
-  };
-};
+// const mapStateToProps = ({ auth, global, user }) => {
+//   return {
+//     auth: auth,
+//     global,
+//     user: user,
+//   };
+// };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    update: (id, user) => {
-      dispatch(updateProfile(id, user));
-    },
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     update: (id, user) => {
+//       dispatch(updateProfile(id, user));
+//     },
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+// export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default Profile;

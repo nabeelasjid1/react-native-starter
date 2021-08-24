@@ -1,4 +1,3 @@
-export const BASE_URL = "https://vidionpro-backend.herokuapp.com";
 export const WELCOME = "Welcome";
 export const SIGN_UP = "Sign Up";
 export const SIGN_IN = "SignIn";
