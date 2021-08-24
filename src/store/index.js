@@ -1,35 +1,29 @@
-import createSagaMiddleware from "redux-saga";
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import authReducer from "../redux/auth/reducers";
-import rootSaga from "../redux";
-import businessReducer from '../redux/business/reducers'
-import globalReducer from '../redux/global/reducers'
-import userReducer from '../redux/users/reducers'
-import { persistStore, persistReducer } from 'redux-persist'
+import { configureStore } from "@reduxjs/toolkit";
+import createFilter from 'redux-persist-transform-filter';
+import logger from "redux-logger";
+import { persistReducer } from "redux-persist";
+import { combineReducers } from '@reduxjs/toolkit';
+import storage from "redux-persist/lib/storage";
+import auth from "../reducers/auth";
+import thunk from 'redux-thunk'
 import AsyncStorage from '@react-native-community/async-storage'
-const rootReducer = combineReducers({
-  auth: authReducer,
-  business : businessReducer,
-  global: globalReducer,
-  user: userReducer,
-})
 
+// fields you want to whitelist
+const testTransform = createFilter('test', ['field 1','field 2' ]);
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage: AsyncStorage,
-  whitelist: ['auth']
-
+  whitelist: ["auth", "test"],
+  //whitelist only selected fields from
+  transforms: [testTransform],
 };
-
-const sagaMiddleware = createSagaMiddleware();
-
-
-const persistedReducer = persistReducer(persistConfig, rootReducer)
-
-
-export const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
-export const persistor = persistStore(store)
-
-
-sagaMiddleware.run(rootSaga);
+const reducers = combineReducers({
+  auth: auth,
+  // test: test,
+});
+const persistedReducer = persistReducer(persistConfig, reducers);
+export default configureStore({
+  reducer: persistedReducer,
+  middleware: [thunk, logger],
+});
