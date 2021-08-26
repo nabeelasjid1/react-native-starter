@@ -4,7 +4,6 @@ import AppNavigation from "./Navigation/AppNavigation";
 console.disableYellowBox = true;
 import * as PushNotification from "./Services/PushNotificationService";
 import * as NavigationServices from "./Services/NavigationServices";
-import { store } from "./store";
 const Root = (props) => {
   const componentDidMount = () => {
     // PushNotification.init()
@@ -25,11 +24,4 @@ const Root = (props) => {
   );
 };
 
-// const mapStateToProps = ({ global }) => {
-//   return {
-//     global: global,
-//   };
-// };
-
-// export default connect(mapStateToProps, null)(Root);
-export default connect(mapStateToProps, null)(Root);
+export default Root;

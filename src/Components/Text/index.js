@@ -2,7 +2,7 @@ import React from "react";
 import { Text, StyleSheet } from "react-native";
 import { Typography, FontWeight, BaseColor } from "../../../config";
 
-const Text = (props) => {
+const TextComponent = (props) => {
   const {
     header,
     title1,
@@ -105,4 +105,4 @@ const Text = (props) => {
   );
 };
 
-export default Text;
+export default TextComponent;

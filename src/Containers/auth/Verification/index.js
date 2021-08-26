@@ -1,5 +1,4 @@
 import React from "react";
-import { verifyEmail } from "../../../redux/auth/actions";
 import {
   View,
   Text,
@@ -103,19 +102,4 @@ const Verification = (props) => {
   );
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     verifyEmail: (token) => {
-//       dispatch(verifyEmail(token));
-//     },
-//   };
-// };
-
-// const mapStateToProps = ({ auth }) => {
-//   return {
-//     state: auth,
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Verification);
 export default Verification;

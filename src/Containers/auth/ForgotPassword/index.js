@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -15,7 +15,6 @@ import Styles from "../../../Styles/Styles";
 import Button from "../../../Components/Button";
 import { FontAwesome } from "@expo/vector-icons";
 
-import { forgotPassword } from "../../../redux/auth/actions";
 import { ScrollView } from "react-native-gesture-handler";
 const ForgotPassword = (props) => {
   const state = {
@@ -105,18 +104,4 @@ const ForgotPassword = (props) => {
   );
 };
 
-// const mapDisptachToProps = (dispatch) => {
-//   return {
-//     forgotPassword: (email) => dispatch(forgotPassword(email)),
-//   };
-// };
-
-// const mapStateToProps = ({ auth, global }) => {
-//   return {
-//     state: auth,
-//     global,
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDisptachToProps)(ForgotPassword);
 export default ForgotPassword;

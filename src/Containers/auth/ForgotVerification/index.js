@@ -1,5 +1,4 @@
 import React from "react";
-import { verifyForgotPass, resetPassword } from "../../../redux/auth/actions";
 import {
   View,
   Text,
@@ -241,19 +240,4 @@ const ForgotVerification = (props) => {
   );
 };
 
-// const mapDisptachToProps = (dispatch) => {
-//   return {
-//     verifyForgotPass: (code) => dispatch(verifyForgotPass(code)),
-//     resetPassword: (user) => dispatch(resetPassword(user)),
-//   };
-// };
-
-// const mapStateToProps = ({ auth, global }) => {
-//   return {
-//     state: auth,
-//     global,
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDisptachToProps)(ForgotVerification);
 export default ForgotVerification;

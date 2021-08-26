@@ -1,15 +1,14 @@
 import { Platform, Alert } from "react-native";
 //import { PUSHER_BEAMS_INSTANCE_ID } from "react-native-dotenv";
 import RNPusherPushNotifications from "react-native-pusher-push-notifications";
-import { store } from "../store";
 //import { NavigationService } from "../services";
 
 export const init = () => {
   let donutsInterest = [];
-  const auth = store.getState().auth;
-  if (auth.isAuthenticated === true) {
-     donutsInterest.push('debug-eushare-'+auth.user.id);
-   }
+  // const auth = store.getState().auth;
+  // if (auth.isAuthenticated === true) {
+  // }
+  donutsInterest.push('debug-eushare-'+auth.user.id);
   RNPusherPushNotifications.setInstanceId("dcc839d8-2a77-4721-850a-5c3b23e57d73");
   RNPusherPushNotifications.on("registered", () => {
     if (Platform.OS === "ios") {

@@ -1,6 +1,5 @@
 import React from "react";
 import _ from "lodash";
-import { getSingleBusiness } from "../../redux/business/actions";
 import Toast from "react-native-simple-toast";
 
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
@@ -11,12 +10,10 @@ import styles from "./Styles";
 import Images from "../../Styles/Images";
 import Styles from "../../Styles/Styles";
 import { ScrollView } from "react-native-gesture-handler";
-import { store } from "../../store";
 import { Keys } from "../../lib/keys";
 import { BlueColor } from "../../../config";
 
 const Home = (props) => {
-  const { singleBusiness } = props.business;
   return props.global?.loading ? (
     <View
       style={{
@@ -51,17 +48,4 @@ const Home = (props) => {
   );
 };
 
-// const mapDisptachToProps = (dispatch) => {
-//   return {
-//     getSingleBusiness: (businessId) => dispatch(getSingleBusiness(businessId)),
-//   };
-// };
-// const mapStateToProps = ({ business, global }) => {
-//   return {
-//     global,
-//     business,
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDisptachToProps)(Home);
 export default Home;

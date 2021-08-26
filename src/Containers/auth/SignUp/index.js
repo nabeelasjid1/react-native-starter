@@ -1,5 +1,4 @@
 import React from "react";
-import { registerUser } from "../../../redux/auth/actions";
 import {
   View,
   Text,
@@ -388,20 +387,4 @@ const SignUp = (props) => {
   );
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     regUser: (user) => {
-//       dispatch(registerUser(user));
-//     },
-//   };
-// };
-
-// const mapStateToProps = ({ auth, global }) => {
-//   return {
-//     state: auth,
-//     global,
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
 export default SignUp;

@@ -3,7 +3,6 @@ import createFilter from 'redux-persist-transform-filter';
 import logger from "redux-logger";
 import { persistReducer } from "redux-persist";
 import { combineReducers } from '@reduxjs/toolkit';
-import storage from "redux-persist/lib/storage";
 import auth from "../reducers/auth";
 import thunk from 'redux-thunk'
 import AsyncStorage from '@react-native-community/async-storage'

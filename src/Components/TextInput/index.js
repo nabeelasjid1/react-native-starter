@@ -3,7 +3,7 @@ import { View, TextInput, Image, TouchableOpacity } from "react-native";
 import Images from "../../Styles/Images";
 import styles from "./Styles";
 
-const TextInput = (props) => {
+const TextInputComponent = (props) => {
   const {
     // imageSource,
     placeholder,
@@ -53,11 +53,11 @@ const TextInput = (props) => {
             // onChangeText={(value) => changeText(value)}
             onChangeText={changeText}
             onSubmitEditing={onSubmit}
-            editable={this.props.edit === false ? false : true}
+            editable={props.edit === false ? false : true}
           />
-          <TouchableOpacity onPress={this.props.IconCallBack}>
-            {this.props.showIcon && (
-              <Image source={this.props.iconSource} style={styles.inputIcon} />
+          <TouchableOpacity onPress={props.IconCallBack}>
+            {props.showIcon && (
+              <Image source={props.iconSource} style={styles.inputIcon} />
             )}
           </TouchableOpacity>
         </View>
@@ -65,4 +65,4 @@ const TextInput = (props) => {
     </View>
   );
 };
-export default TextInput;
+export default TextInputComponent;

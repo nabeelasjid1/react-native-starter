@@ -23,32 +23,11 @@ export const SignIn = createAsyncThunk(
   }
 );
 
-export const NewUser = createAsyncThunk(
+export const SignUp = createAsyncThunk(
   "user/signUp",
   async (user, thunkAPI) => {
     try {
       const response = await axios.post("/auth/signUp", user);
-      return response.data;
-    } catch (err) {
-      if (err.response && err.response.data) {
-        return thunkAPI.rejectWithValue({
-          err: err.response.data,
-          status: err.response.status,
-        });
-      } else {
-        return thunkAPI.rejectWithValue({
-          err: "Network Error",
-        });
-      }
-    }
-  }
-);
-
-export const SendEmail = createAsyncThunk(
-  "sendEmail",
-  async (email, thunkAPI) => {
-    try {
-      const response = await axios.post("/auth/forgetpassword", { email });
       return response.data;
     } catch (err) {
       if (err.response && err.response.data) {
@@ -97,21 +76,10 @@ export const ResetPassword = createAsyncThunk(
 const auth = createSlice({
   name: "auth",
   initialState: {
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    message: "",
-    agreePolicy: false,
+    user: {},
     loading: false,
     err: "",
-    done: false,
-    emailSent: null,
-    signup: null,
-    routeLoading: true,
-    isLogged: null,
-    token: "",
-    userId: "",
+    token: null,
   },
   reducers: {
     SetState(state, { payload: { field, value } }) {
@@ -119,26 +87,18 @@ const auth = createSlice({
     },
     ClearState(state, action) {
       return {
-        name: "",
-        email: "",
-        password: "",
+        user: {},
+        loading: false,
         err: "",
-        done: false,
-        confirmPassword: "",
-        emailSent: null,
-        signup: null,
-        agreePolicy: false,
+        token: null,
       };
     },
     logout(state, action) {
       return {
-        name: "",
-        email: "",
-        userId: "",
-        token: "",
+        user: {},
         loading: false,
-        done: false,
-        isLogged: false,
+        err: "",
+        token: null,
       };
     },
   },
@@ -151,13 +111,9 @@ const auth = createSlice({
     },
     [SignIn.fulfilled]: (state, action) => {
       return {
-        name: action.payload.user.name,
-        email: action.payload.user.email,
-        userId: action.payload.token.userId,
-        token: action.payload.token.token,
+        user: action.payload.user,
+        token: action.payload.token,
         loading: false,
-        done: true,
-        isLogged: true,
       };
     },
     [SignIn.rejected]: (state, action) => {
@@ -167,49 +123,21 @@ const auth = createSlice({
         err: action.payload.err,
       };
     },
-    [NewUser.pending]: (state, action) => {
+    [SignUp.pending]: (state, action) => {
       return {
         ...state,
         loading: true,
       };
     },
-    [NewUser.fulfilled]: (state, action) => {
+    [SignUp.fulfilled]: (state, action) => {
       return {
         ...state,
-        name: action.payload.user.name,
-        email: action.payload.user.email,
-        userId: action.payload.token.userId,
-        token: action.payload.token.token,
-        message: action.payload.token,
-        loading: false,
-        isLogged: true,
-        err: "",
-        signup: true,
+        user: action.payload.user,
+        token: action.payload.token,
+        loading: false,   
       };
     },
-    [NewUser.rejected]: (state, action) => {
-      return {
-        ...state,
-        loading: false,
-        err: action.payload.err,
-      };
-    },
-    [SendEmail.pending]: (state, action) => {
-      return {
-        ...state,
-        loading: true,
-      };
-    },
-    [SendEmail.fulfilled]: (state, action) => {
-      return {
-        ...state,
-        loading: false,
-        err: "",
-        emailSent: true,
-        message: action.payload,
-      };
-    },
-    [SendEmail.rejected]: (state, action) => {
+    [SignUp.rejected]: (state, action) => {
       return {
         ...state,
         loading: false,
@@ -225,10 +153,9 @@ const auth = createSlice({
     [ResetPassword.fulfilled]: (state, action) => {
       return {
         ...state,
+        user: action.payload.user,
+        token: action.payload.token,
         loading: false,
-        err: '',
-        done: true,
-        message: action.payload
       };
     },
     [ResetPassword.rejected]: (state, action) => {

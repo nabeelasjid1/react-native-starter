@@ -12,9 +12,7 @@ import { styles } from "./Styles";
 import Button from "../../../Components/Button";
 import { Provider, TextInput } from "react-native-paper";
 import Styles from "../../../Styles/Styles";
-import { updateProfile, getUser } from "../../../redux/users/actions";
 import images from "../../../Styles/Images";
-import { connect } from "react-redux";
 import Toast from "react-native-simple-toast";
 import { FontAwesome } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -284,26 +282,4 @@ const Profile = (props) => {
     </>
   );
 };
-
-// const mapStateToProps = ({ auth, global, user }) => {
-//   return {
-//     user: auth,
-//     global,
-//     auth,
-//     currentUser: user
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     update: (id, user) => {
-//       dispatch(updateProfile(id, user));
-//     },
-//     getUser: (id) => {
-//       dispatch(getUser(id));
-//     },
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Profile);
 export default Profile;

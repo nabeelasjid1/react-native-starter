@@ -13,7 +13,6 @@ import { styles } from "./Styles";
 import Button from "../../../Components/Button";
 import { Provider, TextInput } from "react-native-paper";
 import Styles from "../../../Styles/Styles";
-import { updateProfile } from "../../../redux/users/actions";
 import images from "../../../Styles/Images";
 import Toast from "react-native-simple-toast";
 import { FontAwesome } from "@expo/vector-icons";
@@ -105,22 +104,4 @@ const Profile = (props) => {
       </>
     );
 }
-
-// const mapStateToProps = ({ auth, global, user }) => {
-//   return {
-//     auth: auth,
-//     global,
-//     user: user,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     update: (id, user) => {
-//       dispatch(updateProfile(id, user));
-//     },
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Profile);
 export default Profile;

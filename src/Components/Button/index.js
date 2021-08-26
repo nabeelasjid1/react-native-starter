@@ -39,7 +39,7 @@ const Button = (props) => {
         ])}
         numberOfLines={1}
       >
-        {this.props.children || "Button"}
+        {props.children || "Button"}
       </Text>
       {loading ? (
         <ActivityIndicator

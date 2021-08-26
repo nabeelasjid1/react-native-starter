@@ -5,7 +5,6 @@ import {
   GraphRequestManager,
   LoginManager,
 } from "react-native-fbsdk";
-import { loginUser } from "../../../redux/auth/actions";
 import {
   View,
   Text,
@@ -442,20 +441,4 @@ const SignIn = (props) => {
   );
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     loginUser: (user) => {
-//       dispatch(loginUser(user));
-//     },
-//   };
-// };
-
-// const mapStateToProps = ({ auth, global }) => {
-//   return {
-//     state: auth,
-//     global,
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
 export default SignIn;

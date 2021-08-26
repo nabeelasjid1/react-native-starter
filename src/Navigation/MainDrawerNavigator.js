@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesome, Entypo } from "@expo/vector-icons";
-import { logout } from "../redux/auth/actions";
-import { getUser, removeUserData } from "../redux/users/actions";
 import { Text, View, Image, SafeAreaView, Dimensions } from "react-native";
 
 import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
@@ -20,9 +18,9 @@ import { ContactNavigator } from "./ContactNavigator";
 const customeDrawerComponent = (props) => {
   const userData = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUser(userData?.user?._id));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getUser(userData?.user?._id));
+  // }, []);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <TouchableOpacity
@@ -65,11 +63,11 @@ const customeDrawerComponent = (props) => {
         {userData?.user ? (
           <TouchableOpacity
             style={{ padding: 15, flexDirection: "row" }}
-            onPress={() => {
-              dispatch(logout());
-              dispatch(removeUserData());
-              unsubscribe(`debug-eushare-${userData?.user?._id}`);
-            }}
+            // onPress={() => {
+            //   dispatch(logout());
+            //   dispatch(removeUserData());
+            //   unsubscribe(`debug-eushare-${userData?.user?._id}`);
+            // }}
           >
             {/* <FontAwesome name="sign-out" size={20} color='grey' /> */}
             <Image source={images.logout} style={{ width: 20, height: 20 }} />
