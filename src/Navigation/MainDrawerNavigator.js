@@ -8,7 +8,7 @@ import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import images from "../Styles/Images";
 import { BlueColor } from "../../config";
-import { unsubscribe } from "../Services/PushNotificationService";
+import { logout } from "../redux/reducers/auth";
 
 //Import Navigations
 import { BottomNavigator } from "./BottomNavigator";
@@ -16,11 +16,9 @@ import { BottomNavigator } from "./BottomNavigator";
 import { ContactNavigator } from "./ContactNavigator";
 
 const customeDrawerComponent = (props) => {
-  const userData = useSelector((state) => state.user);
+  const { user, token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getUser(userData?.user?._id));
-  // }, []);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <TouchableOpacity
@@ -30,7 +28,7 @@ const customeDrawerComponent = (props) => {
         <Image source={images.close} style={{ width: 22, height: 22 }} />
       </TouchableOpacity>
       <View style={{ alignItems: "center", marginVertical: 10 }}>
-        {userData?.user ? (
+        {token ? (
           <View
             style={{
               width: "100%",
@@ -43,7 +41,7 @@ const customeDrawerComponent = (props) => {
             <Image style={{ height: 100, width: 100 }} source={images.avatar} />
             <View style={{ flexDirection: "column" }}>
               <Text style={{ marginTop: 10, fontWeight: "bold", fontSize: 18 }}>
-                {userData?.user?.firstName} {userData?.user?.lastName}
+                {user?.name}
               </Text>
               <TouchableOpacity
                 activeOpacity={0.5}
@@ -60,18 +58,14 @@ const customeDrawerComponent = (props) => {
       <ScrollView>
         <DrawerItems {...props} />
         {/* backgroundColor : '#f4f4f4' */}
-        {userData?.user ? (
+        {token ? (
           <TouchableOpacity
             style={{ padding: 15, flexDirection: "row" }}
-            // onPress={() => {
-            //   dispatch(logout());
-            //   dispatch(removeUserData());
-            //   unsubscribe(`debug-eushare-${userData?.user?._id}`);
-            // }}
+            onPress={() => {
+              dispatch(logout());
+            }}
           >
-            {/* <FontAwesome name="sign-out" size={20} color='grey' /> */}
             <Image source={images.logout} style={{ width: 20, height: 20 }} />
-
             <Text
               style={{ color: "grey", fontWeight: "bold", paddingLeft: 35 }}
             >

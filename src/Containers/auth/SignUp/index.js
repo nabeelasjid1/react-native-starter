@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
   KeyboardAvoidingView,
   Linking,
 } from "react-native";
+import { useDispatch, useSelector } from 'react-redux';
 import CheckBox from "@react-native-community/checkbox";
 import styles from "./Styles";
 import Images from "../../../Styles/Images";
@@ -20,131 +21,61 @@ import { ActivityIndicator } from "react-native-paper";
 import * as Constants from "../../../Constants";
 import { FontAwesome } from "@expo/vector-icons";
 import { BlueColor } from "../../../../config";
+import { SignUp } from "../../../redux/reducers/auth";
 
 const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const passReg = /^[a-zA-Z0-9*.!@#$%^&+-_=/( /)]{3,30}$/;
 
-const SignUp = (props) => {
-  const state = {
+const Signup = (props) => {
+  const dispatch = useDispatch();
+  const { token } = useSelector(state=> state.auth);
+  const [signUpObject, setSignUpObject] = useState({
     firstName: "",
     lastName: "",
-
     email: "",
+    phone: "",
     password: "",
     confirmPassword: "",
-    title: "Customer",
-    phone: "",
-    firstNameError: false,
-    firstNameInvalidError: false,
-    lastNameError: false,
-    lastNameInvalidError: false,
-
-    emailError: false,
-    passwordError: false,
-    confirmPasswordError: false,
-    invalidPassError: false,
-
-    invalidEmailError: false,
-    titleError: false,
-    phoneError: false,
-    isChecked: false,
-    valid: false,
-    passMatchError: false,
-    phoneValidError: false,
-    checkedError: false,
+    privacyCheck: false
+  });
+  const [signUpErrors, setSignUpErrors] = useState({});
+  const handleInputChange = ({name, value}) => {
+    setSignUpObject({
+      ...signUpObject,
+      [name]: value
+    });
   };
-
-  const onChangeTextHandler = (email) => {
-    // setState({ email });
+  const setInputError = ({name, value}) => {
+    setSignUpErrors({
+      [name]: value
+    });
+    return;
   };
-  const onChangePasswordHandler = (password) => {
-    // setState({ password });
+  const onSubmit = () => {
+    if (signUpObject.firstName.trim() === "") {
+      setInputError({name: "firstNameError", value:true});
+    } else if (signUpObject.lastName.trim() === "") {
+      setInputError({name: "lastNameError", value:true});
+    } else if (signUpObject.email.trim() === "" || !reg.test(signUpObject.email)) {
+      setInputError({name: "emailError", value:true});
+    } else if (signUpObject.phone.trim() === "") {
+      setInputError({name: "phoneError", value:true});
+    } else if (signUpObject.password.trim() === "") {
+      setInputError({name: "passwordError", value:true});
+    } else if (signUpObject.confirmPassword.trim() === "") {
+      setInputError({name: "confirmPasswordError", value:true});
+    } else if (signUpObject.password.trim() !== signUpObject.confirmPassword.trim()) {
+      setInputError({name: "passMatchError", value:true});
+    } else if (signUpObject.privacyCheck === false ) {
+      setInputError({name: "checkedError", value:true});
+    } else {
+      dispatch(SignUp(signUpObject));
+    }
   };
-  const onSubmit = async () => {
-    // setState({ valid: false });
-    // const {
-    //   firstName,
-    //   lastName,
-    //   email,
-    //   password,
-    //   title,
-    //   phone,
-    //   confirmPassword,
-    //   isChecked,
-    // } = state;
-    // setState({
-    //   emailError: false,
-    //   invalidEmailError: false,
-    //   passwordError: false,
-    //   confirmPasswordError: false,
-    //   passMatchError: false,
-    //   firstNameError: false,
-    //   lastNameError: false,
-    //   phoneError: false,
-    //   titleError: false,
-    //   phoneValidError: false,
-    //   checkedError: false,
-    //   invalidPassError: false,
-    //   firstNameInvalidError: false,
-    //   lastNameInvalidError: false,
-    // });
-    // const nameReg = /^[a-z ,.'-]+$/i;
-    // if (firstName.trim() === "") setState({ firstNameError: true });
-    // else if (!firstName.match(nameReg))
-    //   setState({ firstNameInvalidError: true });
-    // else if (lastName.trim() === "") setState({ lastNameError: true });
-    // else if (!lastName.match(nameReg))
-    //   setState({ lastNameInvalidError: true });
-    // else if (phone.trim() === "") setState({ phoneError: true });
-    // else if (email.trim() === "") setState({ emailError: true });
-    // else if (reg.test(email) === false)
-    //   setState({ invalidEmailError: true });
-    // else if (password.trim() === "") setState({ passwordError: true });
-    // else if (
-    //   passReg.test(password) === false ||
-    //   password.length < 3 ||
-    //   password.length > 30
-    // )
-    //   setState({ invalidPassError: true });
-    // else if (confirmPassword.trim() === "")
-    //   setState({ confirmPasswordError: true });
-    // else if (confirmPassword !== password)
-    //   setState({ passMatchError: true });
-    // else if (title === "") setState({ titleError: true });
-    // else if (!isChecked) setState({ checkedError: true });
-    // else {
-    //   const user = {
-    //     email: email,
-    //     password: password,
-    //     firstName: firstName,
-    //     lastName: lastName,
-    //     phone: phone,
-    //     userRole: title,
-    //   };
-    //   try {
-    //     setState({ valid: true });
-    //     await props.regUser(user);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
-  };
-  const {
-    emailError,
-    passwordError,
-    invalidEmailError,
-    firstNameError,
-    confirmPassword,
-    passMatchError,
-    confirmPasswordError,
-    lastNameError,
-    phoneError,
-    phoneValidError,
-    checkedError,
-    invalidPassError,
-    firstNameInvalidError,
-    lastNameInvalidError,
-  } = state;
+  useEffect(() => {
+    if (token) {
+      props.navigation.navigate("Home");
+    }
+  },[token])
   return props.global?.loading ? (
     <View
       style={{
@@ -195,10 +126,9 @@ const SignUp = (props) => {
                   style={styles.inputStyle}
                   placeholder="First Name"
                   placeholderTextColor="#707070"
-                  onChangeText={(text) =>
-                    setState({ firstName: text, firstNameError: false })
-                  }
-                  value={state.firstName}
+                  onChangeText={(text) => handleInputChange({name: "firstName", value: text })}
+                  name="firstName"
+                  value={signUpObject.firstName}
                 />
               </View>
 
@@ -212,31 +142,20 @@ const SignUp = (props) => {
                   style={styles.inputStyle}
                   placeholder="Last Name"
                   placeholderTextColor="#707070"
-                  onChangeText={(text) =>
-                    setState({ lastName: text, lastNameError: false })
-                  }
-                  value={state.lastName}
+                  onChangeText={(text) => handleInputChange({name: "lastName", value: text })}
+                  name="lastName"
+                  value={signUpObject.lastName}
                 />
               </View>
             </View>
-            {firstNameError && (
+            {signUpErrors.firstNameError && (
               <Text style={styles.errorMessageStyle}>
                 First Name is required
               </Text>
             )}
-            {firstNameInvalidError && (
-              <Text style={styles.errorMessageStyle}>
-                First name must contains alphabets.
-              </Text>
-            )}
-            {lastNameError && (
+            {signUpErrors.lastNameError && (
               <Text style={styles.errorMessageStyle}>
                 Last Name is required
-              </Text>
-            )}
-            {lastNameInvalidError && (
-              <Text style={styles.errorMessageStyle}>
-                Last name must contains alphabets.
               </Text>
             )}
             <View style={styles.textInput}>
@@ -244,89 +163,53 @@ const SignUp = (props) => {
                 type=""
                 placeholder="(541) 754-3010"
                 secureTextEntry={false}
-                changeText={(value) =>
-                  setState({
-                    phone: value,
-                    phoneError: false,
-                    phoneValidError: false,
-                  })
-                }
-                value={state.phone}
+                changeText={(text) => handleInputChange({name: "phone", value: text })}
+                name="phone"
+                value={signUpObject.phone}
               />
-              {phoneError && (
+              {signUpErrors.phoneError && (
                 <Text style={styles.errorMessageStyle}>
                   Phone Number is required
                 </Text>
               )}
-              {phoneValidError && (
-                <Text style={styles.errorMessageStyle}>
-                  Phone Number must be valid and include country code.
-                </Text>
-              )}
-
               <TextInputComponent
                 type=""
                 placeholder="Email"
                 secureTextEntry={false}
-                changeText={(value) =>
-                  setState({
-                    email: value,
-                    emailError: false,
-                    invalidEmailError: false,
-                  })
-                }
-                value={state.email}
+                changeText={(text) => handleInputChange({name: "email", value: text })}
+                name="email"
+                value={signUpObject.email}
               />
-              {emailError && (
-                <Text style={styles.errorMessageStyle}>Email is required</Text>
+              {signUpErrors.emailError && (
+                <Text style={styles.errorMessageStyle}>Invalid Email</Text>
               )}
-              {invalidEmailError && (
-                <Text style={styles.errorMessageStyle}>
-                  Invalid email address. Valid e-mail can contain only letters,
-                  numbers, '@' and '.'
-                </Text>
-              )}
-
               <TextInputComponent
                 type=""
                 placeholder="Password"
                 secureTextEntry={true}
-                changeText={(value) =>
-                  setState({ password: value, passwordError: false })
-                }
-                value={state.password}
+                changeText={(text) => handleInputChange({name: "password", value: text })}
+                name="password"
+                value={signUpObject.password}
               />
-              {passwordError && (
+              {signUpErrors.passwordError && (
                 <Text style={styles.errorMessageStyle}>
                   Password is required
                 </Text>
               )}
-              {invalidPassError && (
-                <Text style={styles.errorMessageStyle}>
-                  Password only contains 3-30 length of letters, alphabets or
-                  special characters.
-                </Text>
-              )}
-
               <TextInputComponent
                 type=""
                 placeholder="Confirm Password"
                 secureTextEntry={true}
-                changeText={(value) =>
-                  setState({
-                    confirmPassword: value,
-                    confirmPasswordError: false,
-                    passMatchError: false,
-                  })
-                }
-                value={confirmPassword}
+                changeText={(text) => handleInputChange({name: "confirmPassword", value: text })}
+                name="confirmPassword"
+                value={signUpObject.confirmPassword}
               />
-              {confirmPasswordError && (
+              {signUpErrors.confirmPasswordError && (
                 <Text style={styles.errorMessageStyle}>
                   Confirm Password is required
                 </Text>
               )}
-              {passMatchError && (
+              {signUpErrors.passMatchError && (
                 <Text style={styles.errorMessageStyle}>
                   Confirm Password must be matched with Password
                 </Text>
@@ -336,22 +219,18 @@ const SignUp = (props) => {
               <CheckBox
                 style={styles.checkBoxStyle}
                 boxType={"circle"}
-                value={state.isChecked}
+                value={signUpObject.privacyCheck}
                 lineWidth={1.5}
                 onCheckColor={"#44a9c1"}
                 onTintColor={"#44a9c1"}
-                onValueChange={() =>
-                  setState({
-                    isChecked: !state.isChecked,
-                    checkedError: false,
-                  })
-                }
+                name="privacyCheck"
+                onValueChange={(value) => handleInputChange({name: "privacyCheck", value })}
               />
               <Text style={styles.radioTextStyling}>
                 I agree with{" "}
                 <Text
                   onPress={() =>
-                    Linking.openURL("https://eushare.app/privacy-policy/")
+                    Linking.openURL("")
                   }
                   style={{ color: BlueColor.primaryColor }}
                 >
@@ -359,7 +238,7 @@ const SignUp = (props) => {
                 </Text>
               </Text>
             </View>
-            {checkedError && (
+            {signUpErrors.checkedError && (
               <Text style={styles.errorMessageStyle}>
                 Must Agree with the policy.
               </Text>
@@ -387,4 +266,4 @@ const SignUp = (props) => {
   );
 };
 
-export default SignUp;
+export default Signup;
