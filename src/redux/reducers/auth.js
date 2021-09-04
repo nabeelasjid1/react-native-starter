@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import Toast from "react-native-simple-toast";
 import axios from "../../config/axios";
 
-export const SignIn = createAsyncThunk(
+export const Login = createAsyncThunk(
   "/user/signIn",
   async (user, thunkAPI) => {
     try {
       const response = await axios.post("/auth/signin", user);
+      Toast.show("Login successfull");
       return response.data;
     } catch (err) {
       if (err.response && err.response.data) {
@@ -28,6 +29,7 @@ export const SignUp = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const response = await axios.post("/auth/signup", user);
+      Toast.show("Signup successfull");
       return response.data;
     } catch (err) {
       if (err.response && err.response.data) {
@@ -103,20 +105,20 @@ const auth = createSlice({
     },
   },
   extraReducers: {
-    [SignIn.pending]: (state, action) => {
+    [Login.pending]: (state, action) => {
       return {
         ...state,
         loading: true,
       };
     },
-    [SignIn.fulfilled]: (state, action) => {
+    [Login.fulfilled]: (state, action) => {
       return {
         user: action.payload.user,
-        token: action.payload.token,
+        token: action.payload.token.token,
         loading: false,
       };
     },
-    [SignIn.rejected]: (state, action) => {
+    [Login.rejected]: (state, action) => {
       return {
         ...state,
         loading: false,
@@ -133,7 +135,7 @@ const auth = createSlice({
       return {
         ...state,
         user: action.payload.user,
-        token: action.payload.token,
+        token: action.payload.token.token,
         loading: false,   
       };
     },

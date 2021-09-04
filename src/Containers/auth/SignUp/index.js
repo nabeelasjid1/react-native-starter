@@ -27,7 +27,7 @@ const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 const Signup = (props) => {
   const dispatch = useDispatch();
-  const { token } = useSelector(state=> state.auth);
+  const { token, loading } = useSelector(state=> state.auth);
   const [signUpObject, setSignUpObject] = useState({
     firstName: "",
     lastName: "",
@@ -76,7 +76,7 @@ const Signup = (props) => {
       props.navigation.navigate("Home");
     }
   },[token])
-  return props.global?.loading ? (
+  return loading ? (
     <View
       style={{
         flex: 1,
